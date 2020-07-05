@@ -9,7 +9,7 @@ class InputScreen extends StatefulWidget {
 }
 
 class InputScreenState extends State<InputScreen> {
-  User user;
+  User user = User("", 0);
   bool _isInputAgeValid = true, _isInputNameValid = true;
 
   @override
@@ -85,7 +85,7 @@ class InputScreenState extends State<InputScreen> {
       ),
       child: Text('THÊM'),
       onPressed: () {
-        if (_isInputNameValid && _isInputAgeValid) {
+        if (user.userName != null && user.userName.length > 0 && user.userAge > 0) {
           Navigator.pop(context, user);
         }
       },
