@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+
 import 'add_user.dart';
 import 'models/user.dart';
 
@@ -70,8 +70,8 @@ class ListViewHandleItemState extends State<ListViewHandleItem> {
               ),
             ),
           ),
-          Container(
-            height: 650,
+          Expanded(
+//            height: 650,
             child: AnimatedList(
               scrollDirection: Axis.vertical,
               padding: EdgeInsets.all(5),
@@ -96,11 +96,12 @@ class ListViewHandleItemState extends State<ListViewHandleItem> {
   }
 
   _moveToInputScreen(BuildContext context) async {
-    User result = await Navigator.push(
+    final result = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => InputScreen()),
     );
     if (result != null) {
+      print('Add user');
       _insertLastItem(result);
 //      Scaffold.of(context)
 //        ..removeCurrentSnackBar()
@@ -117,11 +118,11 @@ class ListViewHandleItemState extends State<ListViewHandleItem> {
         elevation: 5,
         child: ListTile(
           leading: Icon(Icons.accessibility_new),
-          subtitle: Text(user.userName),
           title: Text(user.userName),
+          subtitle: Text(user.userAge.toString()),
           onTap: () {
             setState(() {
-              print(user);
+              print(user.userName);
             });
           },
           onLongPress: () {
@@ -148,5 +149,3 @@ class ListViewHandleItemState extends State<ListViewHandleItem> {
     items.remove(user);
   }
 }
-
-
